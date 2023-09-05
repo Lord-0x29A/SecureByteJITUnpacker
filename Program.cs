@@ -34,11 +34,9 @@ namespace SecureByteJIT_Unpacker
             Console.ReadKey();
         }
 
-        [Obsolete]
         private static void DecryptJITDataAndRestoreMethods()
         {
-            BinaryReader binaryReader = new BinaryReader(new MemoryStream(JITData));
-           
+            var binaryReader = new BinaryReader(new MemoryStream(JITData));           
             var num = binaryReader.ReadInt32();
             for (int i = 0; i < num; i++)
             {
