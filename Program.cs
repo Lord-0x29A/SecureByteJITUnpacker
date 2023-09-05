@@ -52,7 +52,7 @@ namespace SecureByteJIT_Unpacker
                 {
                     if (!m.HasMethodBody) continue;
                     if (!TokenAndBody.Select(tuple => tuple.Item1).Contains(m.MetadataToken.ToString())) continue;    
-                    var reader = ByteArrayDataSource.CreateReader(TokenAndBody.FirstOrDefault(tuple => tuple.Item1 == m.MetadataToken.ToString()).Item2);
+                    var reader = new BinaryStreamReader(TokenAndBody.FirstOrDefault(tuple => tuple.Item1 == m.MetadataToken.ToString()).Item2);
                     var dissassembler = new CilDisassembler(in reader,
                             new PhysicalCilOperandResolver(moduleDefinition, m.CilMethodBody));
                     var instrs = dissassembler.ReadInstructions();
